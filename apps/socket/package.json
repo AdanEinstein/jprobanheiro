@@ -1,0 +1,19 @@
+{
+  "name": "@jprobanheiro/socket",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "dependencies": {
+    "@jprobanheiro/types": "*",
+    "@types/node": "^20.10.6",
+    "tsx": "^4.7.0",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@types/ws": "^8.5.10"
+  },
+  "types": "types.ts"
+}

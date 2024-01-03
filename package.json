@@ -1,0 +1,13 @@
+{
+  "name": "jprobanheiro",
+  "version": "1.0.0",
+  "private": "true",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "ws": "yarn workspace @jprobanheiro/socket start"
+  }
+}
