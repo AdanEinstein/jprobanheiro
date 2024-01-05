@@ -8,6 +8,8 @@
     "packages/*"
   ],
   "scripts": {
-    "ws": "yarn workspace @jprobanheiro/socket start"
+    "ws": "yarn workspace @jprobanheiro/socket start",
+    "web": "cd ./apps/app && npx serve dist --single",
+    "build:web": "cd ./apps/app && npx expo export -p web"
   }
 }

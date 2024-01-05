@@ -1,0 +1,7 @@
+FROM node:20.6.1
+LABEL description="jprobanheiro"
+WORKDIR /jprobanheiro
+COPY . .
+RUN yarn
+RUN yarn run build:web
+CMD ["yarn", "run", "web"]

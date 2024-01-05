@@ -37,5 +37,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   plugins: [
     "expo-router",
     "./plugins/trust-local-certs.js",
+    [
+      "expo-barcode-scanner",
+      {
+        "cameraPermission": "Permitir o acesso a câmera"
+      }
+    ]
   ]
 });

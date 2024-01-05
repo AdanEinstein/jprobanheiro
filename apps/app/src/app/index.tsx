@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Button, Circle, H1, H2, H3, Separator, Text, XStack, YStack } from "tamagui";
 import { Plus, RefreshCcw } from '@tamagui/lucide-icons';
 import { Dimensions, FlatList, TouchableOpacity } from "react-native";
@@ -7,14 +7,17 @@ import FormClient, { FormClientAttributes } from "../components/FormClient";
 import { useWSContext } from "../context/WSContext";
 import { Swipeable } from "react-native-gesture-handler";
 import { ClientStatus } from "../types";
+import QRCodeConnect from "../components/QRCode";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { H6 } from "tamagui";
 
 export default function Index() {
   const { height } = Dimensions.get('window')
   const formRef = useRef<FormClientAttributes>(null)
-  const { connectionStatus, clients, loading, refreshClients, leaveQueue, id, updateQueue } = useWSContext()
+  const { connectionStatus, clients, loading, refreshClients, leaveQueue, id, updateQueue, wsUrl } = useWSContext()
 
   return (
-    <YStack mt={75} f={1}>
+    <SafeAreaView>
       <FlatList
         data={clients}
         keyExtractor={item => item.id}
@@ -77,9 +80,11 @@ export default function Index() {
           </Swipeable>
         )}
         ListHeaderComponent={(
-          <YStack f={1} space justifyContent="center" alignItems="center" mb="$5">
+          <YStack mt={20} f={1} space justifyContent="center" alignItems="center" mb="$5">
+            <QRCodeConnect />
             <H1 color="$blue10Dark">jPRO.Banheiro</H1>
             <H3>Status da conexão: {connectionStatus}</H3>
+            <H6>URL: "{wsUrl}"</H6>
             <Separator />
             {!clients.some(c => c.id == id) && (
               <XStack f={1} paddingHorizontal="$4">
@@ -93,7 +98,7 @@ export default function Index() {
                 >Entrar na fila</Button>
               </XStack>
             )}
-            <XStack f={1} justifyContent="space-between" paddingHorizontal="$4">
+            <XStack f={1} justifyContent="space-between" paddingHorizontal="$4" space="$2">
               <XStack space="$2" f={1}>
                 <Circle size={"$1"} bg={"$yellow9Dark"} />
                 <Text>Esperando</Text>
@@ -125,6 +130,6 @@ export default function Index() {
       />
       <FormClient ref={formRef} />
 
-    </YStack>
+    </SafeAreaView>
   )
 }

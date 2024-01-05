@@ -10,10 +10,6 @@ export default function Layout() {
     InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
   });
 
-  if (!loaded) {
-    return null;
-  }
-
   return (
     <TamaguiProvider config={config}>
       <WSProvider>
